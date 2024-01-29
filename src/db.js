@@ -8,9 +8,12 @@ const connection = mysql.createConnection({
     database: process.env.DB_NAME
 }).promise();
 
-async function testing() {
-    const query = await connection.query("SELECT * FROM users");
-    console.log(query);
+function sqlQuery(query, params) {
+    if (typeof query != "string") {
+        throw "Type must be string!";
+    }
+
+    return connection.execute(query, params);
 }
 
-testing();
+module.exports = { sqlQuery };
