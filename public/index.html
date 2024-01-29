@@ -31,6 +31,15 @@
             #user-form {
                 margin-bottom: 50px;
             }
+
+            #nouser-warn {
+                color: gray;
+                font-weight: 400;
+            }
+
+            .d-none {
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -41,11 +50,6 @@
         </form>
         <table>
             <thead>
-                <!-- <div class="container">
-                    <p>{username}</p>
-                    <p>{creation_date}</p>
-                    <p>{update_date}</p>
-                </div> -->
                 <th>username</th>
                 <th>creation_date</th>
                 <th>update_date</th>
@@ -55,70 +59,9 @@
                 
             </tbody>
         </table>
+        <h2 id="nouser-warn">Create an user to start!</h2>
 
-        <script>
-            const userForm = document.getElementById('user-form');
-            const usernameInput = document.getElementById('username-input');
-            const usersTable = document.getElementById('users-table');
-
-            function insertUserRow(info, onDelete) {
-                const tableRow = document.createElement('tr');
-                const usernameCell = document.createElement('td');
-                const creationCell = document.createElement('td');
-                const updateCell = document.createElement('td');
-                const deleteCell = document.createElement('td');
-                const deleteButton = document.createElement('button');
-
-                tableRow.id = `user-${info.id}`;
-
-                usernameCell.innerText = info.username;
-                creationCell.innerText = info.created_at;
-                updateCell.innerText = info.updated_at;
-                deleteButton.innerText = "Delete";
-
-                deleteButton.addEventListener('click', onDelete);
-
-                deleteCell.appendChild(deleteButton);
-                tableRow.append(usernameCell, creationCell, updateCell, deleteCell);
-
-                usersTable.appendChild(tableRow);
-            }
-
-            window.addEventListener('DOMContentLoaded', async () => {
-                const users = await fetch('/users');
-                const usersInfo = await users.json();
-
-                usersInfo.forEach((value) => {
-                    const id = value.id;
-                    
-                    insertUserRow(value, async () => {
-                        await fetch('/users', {
-                            method: 'DELETE',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                            },
-                            body: new URLSearchParams({ id }).toString()
-                        });
-
-                        location.reload();
-                    });
-                });
-            });
-
-            userForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                const username = usernameInput.value;
-                await fetch('/users', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                    },
-                    body: new URLSearchParams({ username }).toString()
-                });
-
-                location.reload();
-            });
-        </script>
+        <script src="./scripts/usersManager.js"></script>
+        <script src="./scripts/usersController.js"></script>
     </body>
 </html>
