@@ -3,49 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css" type="text/css">
         <title>CRUM</title>
-        <style>
-            body {
-                text-align: center;
-            }
-
-            input {
-                display: block;
-                margin: 0 auto;
-                margin-bottom: 15px;
-            }
-
-            input:last-child {
-                margin-bottom: 0px;
-            }
-
-            table {
-                max-width: 800px;
-                margin: auto;
-            }
-
-            td, th {
-                padding: 20px;
-            }
-
-            #user-form {
-                margin-bottom: 50px;
-            }
-
-            #nouser-warn {
-                color: gray;
-                font-weight: 400;
-            }
-
-            .d-none {
-                display: none;
-            }
-        </style>
     </head>
     <body>
         <h1>Express + SQL CRUM</h1>
         <form id="user-form">
-            <input type="text" name="username" id="username-input" placeholder="username" required> 
+            <input type="text" name="username" id="username-input" placeholder="username" required autocomplete="off"> 
             <input type="submit" value="submit">
         </form>
         <table>

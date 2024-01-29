@@ -1,0 +1,35 @@
+body {
+    text-align: center;
+}
+
+input {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+input:last-child {
+    margin-bottom: 0px;
+}
+
+table {
+    max-width: 800px;
+    margin: auto;
+}
+
+td, th {
+    padding: 20px;
+}
+
+#user-form {
+    margin-bottom: 50px;
+}
+
+#nouser-warn {
+    color: gray;
+    font-weight: 400;
+}
+
+.d-none {
+    display: none;
+}
