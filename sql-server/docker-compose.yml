@@ -13,7 +13,7 @@ services:
       - MYSQL_DATABASE=userscrud
       - MYSQL_TCP_PORT=3306
     volumes:
-      - C:\Users\Rafael\Documents\Projects\car-api\sql-server\db:/var/lib/mysql
+      - C:\Users\Rafael\Documents\Projects\users-crud\sql-server\db:/var/lib/mysql
     ports:
       - 3307:3306
     expose:
