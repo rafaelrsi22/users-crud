@@ -43,3 +43,7 @@ If you take a look into db.js it shows a "sqlQuery" function that is already mad
 # models
 
 You should take a look into first the models folder, after it, routes folder and finally controllers folder, you will see a model to work with MySQL in Node.js.
+
+# model date parser
+
+There is a model date parser, when you use the DATETIME from SQL it will give you in the SQL format, but using the library "moment" we can format it as we see in the User model.
