@@ -9,8 +9,13 @@ const connection = mysql.createConnection({
 }).promise();
 
 function sqlQuery(query, params) {
-    if (typeof query != "string") {
-        throw "Type must be string!";
+    if (params) {
+        for (const value of params) {
+            console.log(typeof value)
+            if (typeof value === 'object') {
+                throw "Type must be different of and object!";
+            }
+        }
     }
 
     return connection.execute(query, params);
