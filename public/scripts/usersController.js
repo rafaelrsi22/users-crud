@@ -2,6 +2,7 @@ const userForm = document.getElementById('user-form');
 const usernameInput = document.getElementById('username-input');
 
 const deleteButtons = document.getElementsByClassName('delete-button');
+const profileButtons = document.getElementsByClassName('profile-button');
 const usernameInputs = document.getElementsByClassName('input-read');
 
 const noUserWarn = document.getElementById('nouser-warn');
@@ -11,7 +12,6 @@ function parseUserId(rowId) {
 }
 
 async function deleteUser(id) {
-    console.log(id)
     await fetch('/users', {
         method: 'DELETE',
         headers: {
@@ -27,6 +27,12 @@ for (const button of deleteButtons) {
     const userId = parseUserId(button.parentElement.parentElement.id);
 
     button.addEventListener('click', () => deleteUser(userId));
+}
+
+for (const button of profileButtons) {
+    const userId = parseUserId(button.parentElement.parentElement.id);
+
+    button.addEventListener('click', () => showModal(userId));
 }
 
 for (const input of usernameInputs) {

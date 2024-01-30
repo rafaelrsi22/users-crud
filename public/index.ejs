@@ -7,6 +7,7 @@
         <title>CRUM</title>
     </head>
     <body>
+        <%- include('modal') %>
         <h1>Express + SQL CRUM</h1>
         <form id="user-form">
             <input type="text" name="username" id="username-input" placeholder="username" required autocomplete="off"> 
@@ -32,6 +33,7 @@
                             <%- value.updated_at %>
                         </td>
                         <td>
+                            <button class="profile-button">Profile</button>
                             <button class="delete-button">Delete</button>
                         </td>
                     </tr>
@@ -42,6 +44,7 @@
             <h2 id="nouser-warn">Create an user to start!</h2>
         <% } %>
 
+        <script src="./scripts/modalController.js"></script>
         <script src="./scripts/usersController.js"></script>
     </body>
 </html>

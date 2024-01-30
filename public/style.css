@@ -1,3 +1,7 @@
+* {
+    margin: 0;
+}
+
 body {
     text-align: center;
 }
@@ -30,8 +34,46 @@ td, th {
     font-weight: 400;
 }
 
+#modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.186);
+    width: 100vw;
+    height: 100vh;
+}
+
+#modal .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    width: 500px;
+    height: 200px;
+}
+
+#modal button {
+    display: block;
+}
+
+#close-modal-button {
+    position: absolute;
+    margin: 10px;
+    top: 0;
+    right: 0;
+}
+
+#modal .bio-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 .input-read {
