@@ -8,12 +8,10 @@ const connection = mysql.createConnection({
     database: process.env.DB_NAME
 }).promise();
 
-function sqlQuery(query, params) {
-    if (params) {
-        for (const value of params) {
-            if (typeof value === 'object') {
-                throw "Type must be different of and object!";
-            }
+function sqlQuery(query, params = []) {
+    for (const value of params) {
+        if (typeof value === 'object') {
+            throw "Type must be different of and object!";
         }
     }
 
