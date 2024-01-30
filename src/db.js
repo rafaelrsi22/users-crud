@@ -11,7 +11,6 @@ const connection = mysql.createConnection({
 function sqlQuery(query, params) {
     if (params) {
         for (const value of params) {
-            console.log(typeof value)
             if (typeof value === 'object') {
                 throw "Type must be different of and object!";
             }
