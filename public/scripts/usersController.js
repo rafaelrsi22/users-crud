@@ -1,32 +1,44 @@
 const userForm = document.getElementById('user-form');
 const usernameInput = document.getElementById('username-input');
 
+const deleteButtons = document.getElementsByClassName('delete-button');
+const usernameInputs = document.getElementsByClassName('input-read');
+
 const noUserWarn = document.getElementById('nouser-warn');
 
-window.addEventListener('DOMContentLoaded', async () => {
-    const users = await fetch('/users');
-    const usersInfo = await users.json();
-    
-    if (usersInfo.length > 0) {
-        noUserWarn.classList.add('d-none');
-    }
-
-    usersInfo.forEach((value) => {
-        const id = value.id;
-
-        insertUserRow(value, async () => {
-            await fetch('/users', {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                },
-                body: new URLSearchParams({ id }).toString()
-            });
-
-            location.reload();
-        });
+async function deleteUser(id) {
+    console.log(id)
+    await fetch('/users', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: new URLSearchParams({ id }).toString()
     });
-});
+
+    location.reload();
+}
+
+for (const button of deleteButtons) {
+    const rowId = button.parentElement.parentElement.id;
+    const userId = parseInt(rowId.replace('user-', ''));
+
+    button.addEventListener('click', () => deleteUser(userId));
+}
+
+for (const input of usernameInputs) {
+    const lastValue = input.value;
+
+    input.addEventListener('focusout', () => {
+        input.value = lastValue;
+    });
+
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && input.value !== lastValue) {
+            console.log('update!');
+        }
+    });
+}
 
 userForm.addEventListener('submit', async (e) => {
     e.preventDefault();

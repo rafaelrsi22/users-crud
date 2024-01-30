@@ -19,13 +19,29 @@
                 <th>update_date</th>
                 <th> </th>
             </thead>
-            <tbody id="users-table">
-
+            <tbody>
+                <% users.forEach((value) => { %>
+                    <tr id=<%- `user-${value.id}` %> >
+                        <td>
+                            <input class="input-read" type="text" autocomplete="off" required value=<%- value.username %> >
+                        </td>
+                        <td>
+                            <%- value.created_at %>
+                        </td>
+                        <td>
+                            <%- value.updated_at %>
+                        </td>
+                        <td>
+                            <button class="delete-button">Delete</button>
+                        </td>
+                    </tr>
+                <% }); %>
             </tbody>
         </table>
-        <h2 id="nouser-warn">Create an user to start!</h2>
+        <% if (users.length == 0) { %>
+            <h2 id="nouser-warn">Create an user to start!</h2>
+        <% } %>
 
-        <script src="./scripts/usersManager.js"></script>
         <script src="./scripts/usersController.js"></script>
     </body>
 </html>
