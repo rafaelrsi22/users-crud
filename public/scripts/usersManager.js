@@ -29,8 +29,14 @@ function insertUserRow(info, onDelete) {
     });
 
     usernameInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            console.log('submit')
+        if (e.key === 'Enter' && usernameInput.value !== lastUsernameInput) {
+            fetch('/users', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: new URLSearchParams({ username: usernameInput.value }).toString()
+            });
         }
     });
 
