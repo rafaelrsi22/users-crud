@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --experimental-modules src/index.js"
+    "db": "docker compose -f sql-server/docker-compose.yml up -d",
+    "dev": "nodemon ."
   },
   "keywords": [],
   "author": "",
@@ -17,5 +18,8 @@
     "express": "^4.18.2",
     "moment": "^2.30.1",
     "mysql2": "^3.9.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

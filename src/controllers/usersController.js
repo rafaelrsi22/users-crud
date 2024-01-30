@@ -26,5 +26,10 @@ module.exports.deleteUser = async function(req, res) {
 }
 
 module.exports.updateUser = async function(req, res) {
-    console.log(req.body.username);
+    try {
+        await User.updateUser(req.body.id, req.body.username);
+        return res.status(200).end();
+    } catch (e) {
+        return res.status(500).send(e);
+    }
 }

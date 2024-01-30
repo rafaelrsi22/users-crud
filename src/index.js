@@ -18,7 +18,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../public'))
 
 app.get('/', async (req, res) => {
-    res.render('index', {users: await User.getAllUsers()});
+    const users = await User.getAllUsers();
+    res.render('index', { users });
 });
 
 app.listen(process.env.PORT, () => {

@@ -6,6 +6,10 @@ const usernameInputs = document.getElementsByClassName('input-read');
 
 const noUserWarn = document.getElementById('nouser-warn');
 
+function parseUserId(rowId) {
+    return parseInt(rowId.replace('user-', ''));
+}
+
 async function deleteUser(id) {
     console.log(id)
     await fetch('/users', {
@@ -20,8 +24,7 @@ async function deleteUser(id) {
 }
 
 for (const button of deleteButtons) {
-    const rowId = button.parentElement.parentElement.id;
-    const userId = parseInt(rowId.replace('user-', ''));
+    const userId = parseUserId(button.parentElement.parentElement.id);
 
     button.addEventListener('click', () => deleteUser(userId));
 }
@@ -33,9 +36,20 @@ for (const input of usernameInputs) {
         input.value = lastValue;
     });
 
-    input.addEventListener('keypress', (e) => {
+    input.addEventListener('keypress', async (e) => {
         if (e.key === 'Enter' && input.value !== lastValue) {
-            console.log('update!');
+            const userId = parseUserId(input.parentElement.parentElement.id);
+            const newUsername = input.value;
+
+            await fetch('/users', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: new URLSearchParams({ id: userId, username: newUsername }).toString()
+            });
+
+            location.reload();
         }
     });
 }

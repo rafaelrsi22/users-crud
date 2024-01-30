@@ -25,9 +25,12 @@ async function getAllUsers() {
     return formatedQuery;
 }
 
-async function deleteUser(userId) {
-    console.log(userId)
+function deleteUser(userId) {
     return sqlQuery('DELETE FROM users WHERE id = ?', [userId]);
 }
 
-module.exports = {createUser, getAllUsers, deleteUser};
+function updateUser(userId, newName) {
+   return sqlQuery('UPDATE users SET username = ? WHERE id = ?', [newName, userId]);
+}
+
+module.exports = {createUser, getAllUsers, deleteUser, updateUser};

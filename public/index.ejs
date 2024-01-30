@@ -23,7 +23,7 @@
                 <% users.forEach((value) => { %>
                     <tr id=<%- `user-${value.id}` %> >
                         <td>
-                            <input class="input-read" type="text" autocomplete="off" required value=<%- value.username %> >
+                            <input class="input-read" type="text" autocomplete="off" required value="<%- value.username %>" >
                         </td>
                         <td>
                             <%- value.created_at %>
