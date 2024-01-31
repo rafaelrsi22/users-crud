@@ -2,7 +2,7 @@
 
 ## What is it ?
 
-This is a app to show Docker + MySQL + Express.js integration, using mysql2 npm package, if you want to see more about the dependencies look into package.json.
+This is a app to show Docker + MySQL + Express.js integration with a REST api, using mysql2 npm package, if you want to see more about the dependencies look into package.json.
 
 This app is a simple CRUD (Create, Read, Update, Delete) system with a list of users that you can update, change his name, and also change his profile.
 
